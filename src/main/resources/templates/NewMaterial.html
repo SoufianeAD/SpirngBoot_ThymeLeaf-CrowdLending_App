@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link th:href="@{/theme/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+	    <link
+	        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	        rel="stylesheet">
+	    <link th:href="@{/theme/css/sb-admin-2.min.css}" rel="stylesheet">
+	</head>
+	<body>
+		<div id="wrapper">
+			<div th:replace="fragments/SideNavBar :: sidenav"></div>
+			<div id="content-wrapper" class="d-flex flex-column">
+            	<div id="content">
+					<header th:insert="fragments/TopNavBar :: header"></header>
+					 <div class="container-fluid">
+					 	<div class="container border spacing p-3  mt-5" style="margin-top: 20px; width: 50%;">
+			<h2 class="title text-center">Nouveau matériel</h2>
+			<form class="text-center border border-light p-5" th:action="@{/material/newMaterial}" th:object="${material}" method="post">
+			    <input type="text" id="title" name="title" class="form-control mb-4" placeholder="Title" th:field="*{title}">
+			    <input type="text" id="description" name="description" class="form-control mb-4" placeholder="Description" th:field="*{description}">
+			    <input type="file" id="imagePath" name="description" class="form-control mb-4" style="display: none;" th:field="*{imagePath}"  onchange="changePic();">
+			    <button class="btn border rounded"  type="button" onclick="choosePic();">
+			    	<img id="imagePathBtn" th:src="@{${'/image/no-img.jpg'}}" style="width: 200px; height: 200px;"/>
+			    </button>
+			    <div class="text-center mt-4">
+			    	<button class="btn btn-primary" type="submit">Valider</button>
+			    </div>
+			</form>
+		</div>
+					 </div>
+				</div>
+			</div>
+		</div>
+		<script>
+			function choosePic() {
+				document.getElementById("imagePath").click();
+			}
+			
+			function changePic() {
+				var img = document.getElementById("imagePathBtn");
+				var fileInput = document.getElementById("imagePath");
+				var value = fileInput.value;
+				var pwd = "/material/";
+				var src = value.split("\\")[2];
+				img.src = pwd + src;
+			}
+		</script>
+	</body>
+</html>

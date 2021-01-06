@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>les materiaux Non Validé</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link th:href="@{/theme/vendor/fontawesome-free/css/all.min.css}"
+	rel="stylesheet" type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet">
+<link th:href="@{/theme/css/sb-admin-2.min.css}" rel="stylesheet">
+</head>
+<body>
+	<div id="wrapper">
+		<div th:replace="fragments/SideNavBar :: sidenav"></div>
+			<div id="content-wrapper" class="d-flex flex-column">
+	            		<div id="content">
+					<header th:insert="fragments/TopNavBar :: header"></header>
+					<div class="container-fluid">
+						<div class="container mx-auto w-50 p-3">
+				<form class="form-inline"
+					th:action="@{/material/filterUnvalidatedMaterials}">
+					<input class="form-control mr-sm-2" type="search" name="filter"
+						placeholder="Search">
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+				</form>
+			</div>
+			<div class="container mt-4">
+				<div class="row">
+					<!--  card of a material-->
+
+					<div class="col-auto mb-3" th:each="material : ${materials}">
+						<div class="card" style="width: 18rem;-webkit-box-shadow: 5px 5px 19px -9px rgba(0,0,0,0.84); 
+box-shadow: 5px 5px 19px -9px rgba(0,0,0,0.84);">
+							<div class="card-body">
+								<div  style="text-align: center; margin-right: auto;margin-left: auto; align-content: center;align-items: center;">
+									<img th:src="@{${'/material/' + material.imagePath}}"
+										style="width: 150px; height: 120px; margin-right: auto;margin-left: auto;" class="rounded" />
+								</div>
+								<h5 class="card-title" style="text-align: center; margin-top: 5px;" th:text="${material.title}"></h5>
+								<p class="card-text" th:text="${material.description}"></p>
+								
+								<form class="form-inline" th:action="@{/material/validateMaterial}" method="post">
+									<input class="form-control mr-sm-2 " type="hidden" name="idMat"
+										placeholder="Search" th:value="${material.id}">
+									<button type="submit" class="btn btn-primary">
+										Valider
+									</button>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!-- fin card-->
+
+				</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</body>
+
+</html>

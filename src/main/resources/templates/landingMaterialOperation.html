@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Etat de votre Operation</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            body {
+                background: #6599e7;
+                /* fallback for old browsers */
+                background: -webkit-linear-gradient(to right, #9901ff, #a54d04);
+                /* Chrome 10-25, Safari 5.1-6 */
+                background: linear-gradient(to right, #9901ff, #a54d04);
+                /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+                height: 700px;
+            }
+
+            .myTitle {
+
+	text-decoration: underline;
+	font-weight: Bolder;
+                text-align: center;
+                color: white;
+            }
+
+            .centerDiv {
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: auto;
+                margin-bottom: auto;
+            }
+
+            .policy {
+                margin-top: 100px;
+                width: 80%;
+                max-width: 500px;
+                color: white;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="centerDiv">
+            <H1 th:text="${msg}" class="myTitle"></H1>
+            <div class="centerDiv policy">
+                <p th:text="${policy}"></p>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis accusamus blanditiis sint
+                    obcaecati ullam omnis
+                    accusantium ipsum suscipit. Blanditiis sed aperiam dicta dolor reiciendis deserunt sunt facilis
+                    tempora doloribus,
+                    veniam itaque recusandae nostrum culpa atque. Laborum ratione cum enim at, necessitatibus autem.
+                    Nihil, quasi
+                    doloremque! Exercitationem eaque perspiciatis praesentium facere.
+                </p>
+                <a th:href="@{/material/getAll}" class="btn btn-primary">
+                	Skip <i class="fa fa-fast-forward"></i>
+                </a>
+            </div>
+        </div>
+    </body>
+
+</html>

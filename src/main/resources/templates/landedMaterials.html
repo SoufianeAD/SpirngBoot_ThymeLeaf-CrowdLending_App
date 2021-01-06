@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+		<link rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	</head>
+
+	<body>
+		<header th:insert="fragments/TopNavBar :: header"></header>
+		<div class="container">
+
+		</div>
+		<div class="container mx-auto w-25 p-3">
+			<form class="form-inline" th:action="@{/material/searchLandedMaterial}">
+				<input class="form-control mr-sm-2" type="search" name="filter" placeholder="Search">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			</form>
+		</div>
+		<div class="card mx-auto mb-3" style="width: 60%;" th:each="material : ${materials}">
+			<div class="card-body">
+				<a th:if="${material.status==false}">
+					<div class="row">
+
+						<div class="col-md-4">
+							<img th:src="@{${'/material/' + material.imagePath}}" style="width: 150px; height: 120px;"
+								class="rounded" />
+						</div>
+
+
+						<div class="col-md-8 mt-3">
+							<h6><b th:text="${material.title}"></b></h6>
+							<h6 th:text="${material.description}"></h6>
+							<div class="float-right mt-3">
+
+								<button type="button" class="btn btn-danger" disabled>
+									Retourner
+								</button>
+
+							</div>
+						</div>
+					</div>
+				</a>
+
+			</div>
+		</div>
+	</body>
+
+</html>

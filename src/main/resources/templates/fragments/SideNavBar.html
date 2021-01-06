@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Insert title here</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link th:href="@{/theme/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+	    <link
+	        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	        rel="stylesheet">
+	    <link th:href="@{/theme/css/sb-admin-2.min.css}" rel="stylesheet">
+	</head>
+	<body>
+		<div th:fragment="sidenav" id="wrapper">
+			<!-- Sidebar -->
+	        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+	            <!-- Sidebar - Brand -->
+	            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+	                <div class="sidebar-brand-icon rotate-n-15">
+	                    <i class="fas fa-laugh-wink"></i>
+	                </div>
+	                <div class="sidebar-brand-text mx-3">Crowdlending</div>
+	            </a>
+	            <!-- Divider -->
+	            <hr class="sidebar-divider my-0">
+	            <!-- Nav Item - Dashboard -->
+	            <li class="nav-item active" th:if="${#request.getSession().getAttribute('role') == 'admin'}">
+	                <a class="nav-link" th:href="@{/dashboard}">
+	                    <i class="fas fa-fw fa-tachometer-alt"></i>
+	                    <span>Dashboard Admin</span>
+	                </a>
+	            </li>
+	            <li class="nav-item active" th:if="${#request.getSession().getAttribute('role') == 'user'}">
+	                <a class="nav-link" th:href="@{/dashboardUser}">
+	                    <i class="fas fa-fw fa-tachometer-alt"></i>
+	                    <span>Dashboard User</span>
+	                </a>
+	            </li>
+	            <!-- Divider -->
+	            <hr class="sidebar-divider">
+	            <!-- Heading -->
+	            <div class="sidebar-heading" th:if="${#request.getSession().getAttribute('role') == 'user'}">
+	                User Features
+	            </div>
+	            <!-- Nav Item - Pages Collapse Menu -->
+	            <li class="nav-item active" th:if="${#request.getSession().getAttribute('role') == 'user'}">
+	                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+	                    aria-controls="collapseTwo">
+	                    <i class="fas fa-fw fa-wrench"></i>
+	                    <span>Materials</span>
+	                </a>
+	                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
+	                    data-parent="#accordionSidebar">
+	                    <div class="bg-white py-2 collapse-inner rounded">
+	                        <h6 class="collapse-header">Manage Materials:</h6>
+	                        <a class="collapse-item" th:href="@{/material/newMaterialForm}">New Material</a>
+	                        <a class="collapse-item" th:href="@{/material/getAll}">Land Materials</a>
+	                        <a class="collapse-item" th:href="@{/material/returnMaterial}">Return Material</a>
+	                    </div>
+	                </div>
+	            </li>
+	            <!-- Divider -->
+	            <!-- Heading -->
+	            <div class="sidebar-heading" th:if="${#request.getSession().getAttribute('role') == 'admin'}">
+	                Admin Features
+	            </div>
+	            <li class="nav-item active" th:if="${#request.getSession().getAttribute('role') == 'admin'}">
+	                <a class="nav-link" th:href="@{/user/getAll}">
+	                    <i class="fas fa-fw fa-chart-area"></i>
+	                    <span>Users</span></a>
+	            </li>
+	            <li class="nav-item active" th:if="${#request.getSession().getAttribute('role') == 'admin'}">
+	                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true"
+	                    aria-controls="collapseThree">
+	                     <i class="fas fa-fw fa-table"></i>
+	                    <span>Commands history</span></a>
+	                </a>
+	                <div id="collapseThree" class="collapse show" aria-labelledby="headingThree"
+	                    data-parent="#accordionSidebar">
+	                    <div class="bg-white py-2 collapse-inner rounded">
+	                        <h6 class="collapse-header">History of commands:</h6>
+	                        <a class="collapse-item" th:href="@{/material/getAllCmds}">All history</a>
+	                        <a class="collapse-item" th:href="@{/material/getUnvalidatedCmds}">Unvalidated commands</a>
+	                        <a class="collapse-item" th:href="@{/material/getValidateCmds}">Validated commands</a>
+	                    </div>
+	                </div>
+	            </li>
+	            <li class="nav-item active" th:if="${#request.getSession().getAttribute('role') == 'admin'}">
+	                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true"
+	                    aria-controls="collapseThree">
+	                     <i class="fas fa-fw fa-table"></i>
+	                    <span>Manage materials</span></a>
+	                </a>
+	                <div id="collapseFour" class="collapse show" aria-labelledby="headingFour"
+	                    data-parent="#accordionSidebar">
+	                    <div class="bg-white py-2 collapse-inner rounded">
+	                        <h6 class="collapse-header">Managing materials</h6>
+	                        <a class="collapse-item" th:href="@{/material/getUnvalidatedMaterials}">Validate Materials</a>
+	                        <a class="collapse-item" th:href="@{/material/changesAvailableStat}">Edit status</a>
+	                    </div>
+	                </div>
+	            </li>
+	            <!-- Divider -->
+	            <div class="text-center d-none d-md-inline">
+	                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+	            </div>
+	        </ul>
+	        <!-- End of Sidebar -->
+		</div>
+		<script th:src="@{/theme/vendor/jquery/jquery.min.js}"></script>
+		<script th:src="@{/theme/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+		<script th:src="@{/theme/vendor/jquery-easing/jquery.easing.min.js}"></script>
+		<script th:src="@{/theme/js/sb-admin-2.min.js}"></script>
+	</body>
+</html>
